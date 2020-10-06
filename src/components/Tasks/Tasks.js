@@ -5,10 +5,11 @@ import babySit from '../../images/babySit.png'
 
 
 const Tasks = ({task}) => {
+    
     return (
         
         <div  className="col-md-3"> 
-            <Link to={`/registration/${task.name}`}>
+            <Link to={`/registration/${task.name}/${task._id}`}>
                 <img src={require(`../../images/${task.pic}`)} alt=""/>
                 <h4>{task.name}</h4>
             </Link>

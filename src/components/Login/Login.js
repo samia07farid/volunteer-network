@@ -32,6 +32,7 @@ const Login = () => {
             <h2>Login with</h2>
             <button onClick={handleGoogleSignIn}>Continue with google</button>
          
+         
         </div>
     );
 };

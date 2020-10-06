@@ -14,7 +14,7 @@ const Home = () => {
                     <div>
                         <div className="row">
                             {
-                                tasks.map(task => <Tasks task={task}></Tasks> )
+                                tasks.map(task => <Tasks key={task._id} task={task}></Tasks> )
                             }
                         </div>
                     </div>

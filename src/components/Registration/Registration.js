@@ -10,13 +10,15 @@ import {
 } from '@material-ui/pickers';
 
 const Registration = () => {
-    const { name } = useParams();
+    const { name, id } = useParams();
     const { tasksState, loggedUserState } = useContext(VolunteerEvents);
     const [loggedInUser, setLoggedInUser] = loggedUserState;
     const [tasks, setTasks] = tasksState;
     const taskName = tasks.find(each => each.name === name);
 
-    const [selectedDate, setSelectedDate] = useState({ date: new Date('2014-08-18T21:11:54') });
+    const [selectedDate, setSelectedDate] = useState(
+        { registeredDate: new Date()}
+        );
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -24,7 +26,6 @@ const Registration = () => {
 
     const handleRegister = () => {
         const newRegister = { ...loggedInUser, ...selectedDate };
-        console.log(newRegister)
         console.log(newRegister);
         fetch('http://localhost:5000/addRegister', {
             method: 'POST',
@@ -32,15 +33,19 @@ const Registration = () => {
             body: JSON.stringify(newRegister)
         })
             .then(res => res.json())
-            .then(data => console.log(data));
+            .then(data => console.log(data))
+    }
 
+    const history = useHistory();
+    const goToRegisterDetails = (id) => {
+        history.push(`/register-details/${id}`);
     }
 
     return (
         <div className="bg-color">
             <div className="row justify-content-md-center bg-color">
                 <div className="form-container">
-                    <form action="" className="col">
+                    <form action="" className="col" >
                         <h4>Register as a Volunteer</h4>
                         <div className="form-fields">
                             <input type="text" defaultValue={loggedInUser.username} name="fullname" placeholder="Full Name" className="form-input" />
@@ -52,7 +57,7 @@ const Registration = () => {
                                     <KeyboardDatePicker
                                         disableToolbar
                                         variant="inline"
-                                        format="MM/dd/yyyy"
+                                        format="dd/MM/yyyy"
                                         margin="normal"
                                         id="date-picker-inline"
                                         // label="Date picker inline"
@@ -73,7 +78,7 @@ const Registration = () => {
                                     tasks.length > 0 ? taskName.name : console.log('no name')
                                 }
                             />
-                            <Link to="/register-details"><button onClick={handleRegister} className="register-btn">Registration</button></Link>
+                            <button onClick={() => {handleRegister(); goToRegisterDetails(id);}} className="register-btn">Registration</button>
                         </div>
                     </form>
                 </div>

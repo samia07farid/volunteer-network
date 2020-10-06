@@ -51,15 +51,15 @@ function App(props) {
           <Route path="/events">
             <Events/>
           </Route>
-          <PrivateRoute path="/registration/:name">
+          <PrivateRoute path="/registration/:name/:id">
             <Registration></Registration>
           </PrivateRoute>
           <Route path="/login">
             <Login />
           </Route>
-          <PrivateRoute path="/register-details">
+          <Route path="/register-details/:id">
             <RegisterDetails />
-          </PrivateRoute>
+          </Route>
           <Route exact path="/">
             <Home />
           </Route>
