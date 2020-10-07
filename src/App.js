@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,6 +13,7 @@ import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import RegisterDetails from "./components/RegisterDetails/RegisterDetails";
 import Registration from "./components/Registration/Registration";
+import UserTask from "./components/UserTask/UserTask";
 
 const themes = {
   light: {
@@ -29,18 +30,11 @@ export const VolunteerEvents = createContext();
 
 function App(props) {
   const [theme, setTheme] = useState(themes.dark);
-  const [tasks, setTasks] = useState([]); 
   const [loggedInUser, setLoggedInUser] = useState({});
-
-    useEffect(() => {
-        fetch('http://localhost:5000/events')
-        .then(res => res.json())
-        .then(data => setTasks(data))
-    }, [])
 
   return (
     <VolunteerEvents.Provider 
-      value={{themeState: [theme, setTheme], tasksState: [tasks, setTasks], loggedUserState: [loggedInUser, setLoggedInUser]}}>
+      value={{themeState: [theme, setTheme], loggedUserState: [loggedInUser, setLoggedInUser]}}>
         {props.children}
     <Router>
     <Header/>
@@ -51,14 +45,14 @@ function App(props) {
           <Route path="/events">
             <Events/>
           </Route>
-          <PrivateRoute path="/registration/:name/:id">
+          <PrivateRoute path="/registration/:task">
             <Registration></Registration>
           </PrivateRoute>
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/register-details/:id">
-            <RegisterDetails />
+          <Route path="/userTask">
+            <UserTask></UserTask>
           </Route>
           <Route exact path="/">
             <Home />

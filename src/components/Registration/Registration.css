@@ -7,17 +7,7 @@
     justify-content: center;
     margin-top: 40px;
     margin-bottom: 30px;
-}
-.date-input{
-    padding-right: 20px;
-}
-.bg-color{
-    background-color: rgb(241, 241, 241);
-}
-h4{
-    /* text-align: center; */
-    margin-bottom: 20px;
-}
+} 
 .form-fields{
     padding-left: 50px;
 }
@@ -39,4 +29,10 @@ h4{
     border: none;
     font-weight: 500;
     cursor: pointer;
+}
+h3{
+    padding-top: 20px;
+}
+.bg-color{
+    background-color: rgba(255, 239, 213, 0.801);
 }

@@ -5,8 +5,9 @@ import logo from '../../logos/logo.png'
 import { VolunteerEvents } from '../../App';
 
 function Header() {
-    const {themeState, tasksState} = useContext(VolunteerEvents);
+    const {themeState, loggedUserState} = useContext(VolunteerEvents);
     const [theme, setTheme] = themeState;
+    const [loggedInUser, setLoggedInUser] = loggedUserState;
 
     return (    
         <div className="header" style={{ background: theme.background, color: theme.foreground }}>

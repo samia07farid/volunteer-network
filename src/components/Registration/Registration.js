@@ -1,87 +1,52 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { VolunteerEvents } from '../../App';
 import './Registration.css';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { useForm } from 'react-hook-form';
 
 const Registration = () => {
-    const { name, id } = useParams();
-    const { tasksState, loggedUserState } = useContext(VolunteerEvents);
+    const { task } = useParams();
+    const { loggedUserState } = useContext(VolunteerEvents)
     const [loggedInUser, setLoggedInUser] = loggedUserState;
-    const [tasks, setTasks] = tasksState;
-    const taskName = tasks.find(each => each.name === name);
+    const date = new Date();
+    const isRegistered = false;
 
-    const [selectedDate, setSelectedDate] = useState(
-        { registeredDate: new Date()}
-        );
+    const { register, handleSubmit } = useForm();
 
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
-
-    const handleRegister = () => {
-        const newRegister = { ...loggedInUser, ...selectedDate };
-        console.log(newRegister);
-        fetch('http://localhost:5000/addRegister', {
+    const onSubmit = (data) => {
+        fetch('http://localhost:5000/addUserInfo', {
             method: 'POST',
-            headers: { 'Content-Type' : 'application/json' },
-            body: JSON.stringify(newRegister)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
-    }
-
-    const history = useHistory();
-    const goToRegisterDetails = (id) => {
-        history.push(`/register-details/${id}`);
-    }
+            .then(data => {
+                console.log(data)
+            })
+    };
 
     return (
-        <div className="bg-color">
+        <div>
             <div className="row justify-content-md-center bg-color">
-                <div className="form-container">
-                    <form action="" className="col" >
-                        <h4>Register as a Volunteer</h4>
-                        <div className="form-fields">
-                            <input type="text" defaultValue={loggedInUser.username} name="fullname" placeholder="Full Name" className="form-input" />
-                            <br />
-                            <input type="text" defaultValue={loggedInUser.email} name="email" placeholder="Email" className="form-input" />
-                            <br />
-                            <MuiPickersUtilsProvider utils={DateFnsUtils} className="date-input">
-                                <Grid container justify="space-around">
-                                    <KeyboardDatePicker
-                                        disableToolbar
-                                        variant="inline"
-                                        format="dd/MM/yyyy"
-                                        margin="normal"
-                                        id="date-picker-inline"
-                                        // label="Date picker inline"
-                                        value={selectedDate}
-                                        onChange={handleDateChange}
-                                        KeyboardButtonProps={{
-                                            'aria-label': 'change date',
-                                        }}
-                                    />
-                                </Grid>
-                            </MuiPickersUtilsProvider>
-                            <br />
-                            <input type="text" name="description" placeholder="Description" className="form-input" />
-                            <br />
-                            <input type="text" name="libraryBooks" placeholder="Organize booksat the library" className="form-input"
-                                value={
-
-                                    tasks.length > 0 ? taskName.name : console.log('no name')
-                                }
-                            />
-                            <button onClick={() => {handleRegister(); goToRegisterDetails(id);}} className="register-btn">Registration</button>
-                        </div>
-                    </form>
-                </div>
+                <form onSubmit={handleSubmit(onSubmit)} className="form-container">
+                    <div className="form-fields">
+                        <h3>Register As Volunteer</h3>
+                        <input name="fullName" defaultValue={loggedInUser.username}
+                            className="form-input" ref={register({ required: true })} />
+                        <input name="email" defaultValue={loggedInUser.email}
+                            className="form-input" ref={register({ required: true })} />
+                        <input type='date' name="date" defaultValue={date.toDateString('dd/MM/yyyy')}
+                            className="form-input" ref={register({ required: true })} />
+                        <input name="description" defaultValue="Description"
+                            className="form-input" ref={register({ required: true })} />
+                        <input name="taskName" defaultValue={task}
+                            className="form-input" ref={register({ required: true })} />
+                        <input type="submit" className="register-btn" value="Registration" />
+                        {loggedInUser.email &&
+                            <Link to="/userTask"> <button className="register-btn"> see your registration </button> </Link>
+                        }
+                    </div>
+                </form>
             </div>
         </div>
     );
