@@ -7,9 +7,9 @@ const Home = () => {
     const {themeState} = useContext(VolunteerEvents);
     const [theme, setTheme] = themeState;
     const [tasks, setTasks] = useState([]); 
-    
+
     useEffect(() => {
-        fetch('http://localhost:5000/events')
+        fetch('https://peaceful-journey-88184.herokuapp.com/events')
         .then(res => res.json())
         .then(data => setTasks(data))
     }, [])

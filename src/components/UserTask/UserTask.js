@@ -8,7 +8,7 @@ const UserTask = () => {
     const [userTask, setUserTask] = useState([]);
 
     useEffect( () => {
-        fetch('http://localhost:5000/userTask?email=' + loggedInUser.email)
+        fetch('https://peaceful-journey-88184.herokuapp.com/userTask?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => setUserTask(data))
     }, [loggedInUser.email]);

@@ -3,7 +3,7 @@ import eventsInfo from '../../fakedata/eventsInfo';
 
 const Events = () => {
     const handleAddEvents = () => {
-        fetch('http://localhost:5000/addEvents', {
+        fetch('https://peaceful-journey-88184.herokuapp.com/addEvents', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'

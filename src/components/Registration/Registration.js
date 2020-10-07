@@ -14,7 +14,7 @@ const Registration = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
-        fetch('http://localhost:5000/addUserInfo', {
+        fetch('https://peaceful-journey-88184.herokuapp.com/addUserInfo', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -24,6 +24,10 @@ const Registration = () => {
                 console.log(data)
             })
     };
+
+    const handleDoneRegister = () => {
+        alert("Done registration! Checkout see your registration now")
+    }
 
     return (
         <div>
@@ -41,7 +45,7 @@ const Registration = () => {
                             className="form-input" ref={register({ required: true })} />
                         <input name="taskName" defaultValue={task}
                             className="form-input" ref={register({ required: true })} />
-                        <input type="submit" className="register-btn" value="Registration" />
+                        <input onClick={handleDoneRegister} type="submit" className="register-btn" value="Registration" />
                         {loggedInUser.email &&
                             <Link to="/userTask"> <button className="register-btn"> see your registration </button> </Link>
                         }

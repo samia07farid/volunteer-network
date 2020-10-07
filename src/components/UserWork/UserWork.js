@@ -2,7 +2,7 @@ import React from 'react';
 
 const UserWork = ({taskInfo}) => {
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`,{
+        fetch(`https://peaceful-journey-88184.herokuapp.com/delete/${id}`,{
             method: 'DELETE',
         })
         .then(res => res.json)
