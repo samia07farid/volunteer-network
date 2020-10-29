@@ -9,7 +9,6 @@ const Registration = () => {
     const { loggedUserState } = useContext(VolunteerEvents)
     const [loggedInUser, setLoggedInUser] = loggedUserState;
     const date = new Date();
-    const isRegistered = false;
 
     const { register, handleSubmit } = useForm();
 

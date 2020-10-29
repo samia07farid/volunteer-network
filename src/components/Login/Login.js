@@ -4,6 +4,7 @@ import "firebase/auth";
 import firebaseConfig from '../../firebase.config';
 import { VolunteerEvents } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
+import './Login.css'
 
 firebase.initializeApp(firebaseConfig);
 
@@ -28,11 +29,9 @@ const Login = () => {
           });
     }
     return (
-        <div>
+        <div className="login-container">
             <h2>Login with</h2>
             <button onClick={handleGoogleSignIn}>Continue with google</button>
-         
-         
         </div>
     );
 };

@@ -11,7 +11,6 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import RegisterDetails from "./components/RegisterDetails/RegisterDetails";
 import Registration from "./components/Registration/Registration";
 import UserTask from "./components/UserTask/UserTask";
 
