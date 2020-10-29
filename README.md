@@ -23,6 +23,8 @@
 - reatc router
 - react hook
 - react bootstrap
+- react dom 
+- react scripts
 
   
 
