@@ -25,6 +25,7 @@
 - react bootstrap
 - react dom 
 - react scripts
+- data fns
 
   
 
