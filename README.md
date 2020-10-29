@@ -1,6 +1,6 @@
 # Volunteer Network
 #### Live Link: https://volunteer-network-282ef.web.app/
-#### Resume: https://drive.google.com/file/d/1nCrKEdpuaMVPbkoDu-0UbVi_RzBOMAOh/view?usp=sharing
+#### Resume: https://drive.google.com/file/d/1UhbNoLPVRcnIWV9IfVAeB7H8vRSZ4n-y/view?usp=sharing
 
 ### Features:-
 - List of events in row will appear
